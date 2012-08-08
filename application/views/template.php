@@ -51,7 +51,9 @@
 	<div class="server-info">Php: <strong><?=PHP_VERSION?></strong></div>
 </div></header>
 <!-- End server status -->
+	<?=$menu?>
 	<?=$content?>
+	<?=$footer?>
 <!--[if lt IE 8]></div><![endif]-->
 <!--[if lt IE 9]></div><![endif]-->
 </body>

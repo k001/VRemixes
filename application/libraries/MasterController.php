@@ -18,8 +18,9 @@ class MasterController extends Controller {
 		$this->info['messages'] = $this->conf_model->get_messages($this->id_user);
 		$this->info['messages_count'] = $this->info['messages']->num_rows();
 //		$this->info['comments'] = $this->conf_model->get_comments();
-		
-		$this->template->write_view('content', 'generales/front_view',$this->info);
+		$this->template->write_view('menu', 'generales/menu_view', $this->info);
+		$this->template->write_view('footer', 'generales/footer_view', $this->info);
+//		$this->template->write_view('content', 'generales/front_view',$this->info);
 		return($this->info);
 	}
 

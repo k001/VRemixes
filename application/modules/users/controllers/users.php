@@ -60,7 +60,7 @@ class users extends MasterController {
 				{
 					$this->data['ajax'] = json_encode(array(
 						'valid' => true,
-						'redirect' => '/front/'
+						'redirect' => '/'
 					));
 				}
 				else
@@ -113,7 +113,7 @@ class users extends MasterController {
 	 */
 	function logout()
 	{
-//		($this->tank_auth->is_logged_in()? true: redirect('/users/'));
+		$this->template->set_template('template_login');
 		$this->tank_auth->logout();
 		$this->data['login']=true;
 		$this->data['message'] = $this->lang->line('auth_message_logged_out');
@@ -219,7 +219,9 @@ class users extends MasterController {
 		
 		$this->template->add_css('assets/css/block-lists.css');
 		$this->template->add_css('assets/css/simple-lists.css');
-//		$this->template->write_view('content', 'auth/change_email_form', $this->data);
+		$this->template->write_view('menu', 'generales/menu_view', $this->data);
+		$this->template->write_view('footer', 'generales/footer_view', $this->data);
+		$this->template->write_view('content', 'auth/change_email_form', $this->data);
 		$this->template->render();
 	}
 
