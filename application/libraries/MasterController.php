@@ -19,7 +19,7 @@ class MasterController extends Controller {
 		$this->info['messages_count'] = $this->info['messages']->num_rows();
 //		$this->info['comments'] = $this->conf_model->get_comments();
 		
-		$this->template->write_view('content', 'front_view',$this->info);
+		$this->template->write_view('content', 'generales/front_view',$this->info);
 		return($this->info);
 	}
 

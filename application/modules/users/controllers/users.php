@@ -1,6 +1,6 @@
 <?php if (! defined('BASEPATH')) exit('No direct script access');
 
-class users extends Controller {
+class users extends MasterController {
 
 	private $data = array();
 	private $username;
@@ -9,7 +9,6 @@ class users extends Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->template->set_template('template_login');
 	}
 	
 	function index()
@@ -25,7 +24,8 @@ class users extends Controller {
 	 */
 	function login()
 	{
-		if ($this->tank_auth->is_logged_in()) redirect('/front/');
+		$this->template->set_template('template_login');
+		if ($this->tank_auth->is_logged_in()) redirect();
 		elseif ($this->tank_auth->is_logged_in(FALSE)) 	redirect('/users/send_again/');
 		else
 		{
@@ -209,6 +209,18 @@ class users extends Controller {
 			$this->template->write_view('content', 'auth/register_form', $data);
 			$this->template->render();
 		}
+	}
+
+	function profile()
+	{
+		($this->tank_auth->is_logged_in()?true:redirect('/users/'));
+
+		$this->template->set_template('default');
+		
+		$this->template->add_css('assets/css/block-lists.css');
+		$this->template->add_css('assets/css/simple-lists.css');
+//		$this->template->write_view('content', 'auth/change_email_form', $this->data);
+		$this->template->render();
 	}
 
 	/**

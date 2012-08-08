@@ -1,5 +1,9 @@
 $(document).ready(function()
 {
+	$('#register-form').click(function(){
+		$(location).attr('href', "/users/register");
+	});
+	
 	// We'll catch form submission to do it in AJAX, but this works also with JS disabled
 	$('#login-form').submit(function(event)
 	{
