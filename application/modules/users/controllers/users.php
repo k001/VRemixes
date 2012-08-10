@@ -130,6 +130,7 @@ class users extends MasterController {
 	 */
 	function register()
 	{
+		$this->template->set_template('template_login');
 		if ($this->tank_auth->is_logged_in()) {									// logged in
 			redirect('');
 
@@ -203,7 +204,6 @@ class users extends MasterController {
 			$data['use_username'] = $use_username;
 			$data['captcha_registration'] = $captcha_registration;
 			$data['use_recaptcha'] = $use_recaptcha;
-			
 			$this->template->add_css('assets/css/special-pages.css');	
 			$this->template->add_css('assets/css/special-pages.css');		
 			$this->template->write_view('content', 'auth/register_form', $data);

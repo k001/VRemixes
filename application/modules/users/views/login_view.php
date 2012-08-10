@@ -4,15 +4,12 @@
 		<br>Tiempo local <?=date('h:m A')?><?php }else echo $message;?></p>
 	</div></div>
 </section>
-
 <section id="login-block">
 	<div class="block-border">
 		<div class="block-content">		
 			<h1><?=lang('admin')?></h1>
 			<div class="block-header"><?=lang('please-login')?></div>
-				
 			<p class="message error no-margin hide"></p>
-			
 			<form class="form with-margin" name="login-form" id="login-form" method="post" action="/users/login">
 				<input type="hidden" name="a" id="a" value="send">
 				<p class="inline-small-label">
@@ -43,7 +40,7 @@
 		</div>
 		<div class="block-content no-title">
 			<p class="inline-small-label">
-				<button type="submit" id="register-form" class="grey"><?=lang('register-form')?></button>
+				<a id="register-form" class="button grey" href="/users/register"><?=lang('register-form')?></a>
 			</p>
 		</div>
 	</div>

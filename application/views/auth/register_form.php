@@ -101,7 +101,10 @@ $captcha = array(
 		</p>
 		<?php }
 		} ?>
-	<button type="submit" class="float-right"><?=lang('send')?></button>
-	<?php echo form_close(); ?>
-	</div></div>
+				<a class="button float-left grey" href="/users/login"><?=lang('login')?></a>				
+				<button type="submit" class="float-right"><?=lang('send')?></button>
+				<?php echo form_close(); ?>
+			<p>&nbsp;</p>
+		</div>
+	</div>
 </section>
