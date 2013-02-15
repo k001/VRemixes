@@ -16,7 +16,8 @@ class conf_model extends Model {
 	function get_version()
 	{
 		$query = $this->db->getwhere('conf', array('class'=>'version'));
-		if ($query->num_rows() > 0) {
+		if ($query->num_rows() > 0)
+		{
 			return $query->row()->value; ;
 		}
 		else
@@ -30,9 +31,27 @@ class conf_model extends Model {
 	 * @return array
 	 * @author Ivan A. Zenteno <ivan.zenteno@infapen.com>
 	 */
-	function get_messages($id_user)
+	function get_messages($id_user, $id_admin = 0)
 	{
-		$query = $this->db->getwhere('messages', array('para'=>$id_user));
+		$query = $this->db->getwhere('messages', array('para' => $id_user) );
+		if($id_admin > 0)
+		{
+			$this->db->where(array('de' => $id_admin ) );	
+		}
 		return $query;
+
 	}
+	
+	
+	function get_post($post)
+	{
+		$query = $this->db->getwhere('conf', array('class'=>'faqs'));
+		if($query->num_rows() > 0)
+		{
+			return $query->row_array();
+		}
+		else
+			return false;
+	}
+
 }

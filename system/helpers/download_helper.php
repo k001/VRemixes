@@ -52,10 +52,11 @@ if ( ! function_exists('force_download'))
 		{
 			return FALSE;
 		}
-	
+		
 		// Grab the file extension
 		$x = explode('.', $filename);
 		$extension = end($x);
+
 
 		// Load the mime types
 		@include(APPPATH.'config/mimes'.EXT);
@@ -69,9 +70,9 @@ if ( ! function_exists('force_download'))
 		{
 			$mime = (is_array($mimes[$extension])) ? $mimes[$extension][0] : $mimes[$extension];
 		}
-	
+
 		// Generate the server headers
-		if (strstr($_SERVER['HTTP_USER_AGENT'], "MSIE"))
+		if (!strstr($_SERVER['HTTP_USER_AGENT'], "MSIE"))
 		{
 			header('Content-Type: "'.$mime.'"');
 			header('Content-Disposition: attachment; filename="'.$filename.'"');
@@ -88,7 +89,37 @@ if ( ! function_exists('force_download'))
 			header("Content-Transfer-Encoding: binary");
 			header('Expires: 0');
 			header('Pragma: no-cache');
-			header("Content-Length: ".strlen($data));
+			header("Content-Length: ".filesize($data));
+			
+			
+			
+			
+			
+		    header('Content-Type: video/mpeg');			
+		    header('Content-Disposition: attachment; filename='.basename($file));
+		    header('Content-Transfer-Encoding: binary');
+		    header('Expires: 0');
+		    		    
+		    			
+			header('Content-Description: File Transfer');
+
+		    // Suggest better filename for browser to use when saving file:
+
+
+		    // Caching headers:
+
+		    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+		    header('Pragma: public');
+		    // This should be set:
+		    header('Content-Length: ' . filesize($file));
+		    // Clean output buffer without sending it, alternatively you can do ob_end_clean(); to also turn off buffering.
+		    ob_clean();
+		    // And flush buffers, don't know actually why but php manual seems recommending it:
+		    flush();
+		    // Read file and output it's contents:
+		    readfile( $file );
+		    // You need to exit after that or at least make sure that anything other is not echoed out:
+		    exit;
 		}
 	
 		exit($data);

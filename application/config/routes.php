@@ -42,6 +42,8 @@
 
 $route['default_controller'] = "front";
 $route['video/list'] = "front/music_list";
+$route['video/download/:any']  = "front/download/$1";
+$route['blog/:any'] = "front/blog/$1";
 $route['scaffolding_trigger'] = "";
 
 

@@ -4,6 +4,7 @@
 		<li class="home <?=($this->uri->segment(1) == "")? "current": false ?>"><a href="javascript:void(0)" title="<?=strtoupper(lang('home'))?>"><?=lang('home')?></a>
 			<ul>
 				<li class="current"><a href="<?=base_url()?>" title="Dashboard"><?=lang('dashboard')?></a></li>
+				<li class=""><a href="/blog/faqs" title="Preguntas">Preguntas frecuentes</a></li>
 				<!--
 				<li class="with-menu"><a href="javascript:void(0)" title="My settings"><?=lang('my-settings')?></a>
 					<div class="menu">
@@ -50,17 +51,18 @@
 				-->
 			</ul>
 		</li>
-		<li class="medias <?=($this->uri->segment(1) == "video")? "current": false ?>"><a href="javascript:void(0)" title="Medias">Medias</a>
+		<li class="medias <?=($this->uri->segment(1) == "video")? "current": false ?>"><a href="javascript:void(0)" title="Lista de videos">Videos</a>
 			<ul>
-				<li class="<?=($this->uri->segment(1) == "video" and $this->uri->segment(2) == "list")? "current": false?>"><a href="/video/list" title="Browse">Browse</a></li>
-				<li><a href="javascript:void(0)" title="Manage">Manage</a></li>
+				<li class="<?=($this->uri->segment(1) == "video" and $this->uri->segment(2) == "list")? "current": false?>"><a href="/video/list" title="Browse">Packs</a></li>
+				<li><a href="/video/vdj" title="Manage">VDjs</a></li>
 			</ul>
 		</li>
-		<li class="backup"><a href="javascript:void(0)" title="Backup">Backup</a></li>
-		
+		<li class="backup"><a href="javascript:void(0)" title="Pruebame!">Descargas</a></li>
+		<li class="settings"><a href="/blog/faqs">Informaci&oacute;n</a></li>
 		<li class="users <?=($this->uri->segment(1) == "users")? "current": false ?>"><a href="javascript:void(0)" title="<?=lang('my-settings')?>">&nbsp;</a>
 			<ul>
 				<li class="<?=($this->uri->segment(2) == "profile")? "current":false?>"><a href="/users/profile" title="My profile"><?=lang('my-profile')?></a></li>
+				<li class="<?=($this->uri->segment(2) == "inbox")? "current":false?>"><a href="/users/inbox" title="<?=lang('my-inbox')?>"><?=lang('my-inbox')?></a></li>
 			</ul>
 		</li>
 	</ul>
@@ -98,25 +100,9 @@
 					</li>
 				<?php endforeach; ?>
 				</ul>
-				
-				<p id="messages-info" class="result-info"><a href=""><?=lang('go-to-inbox')?> &raquo;</a></p>
+				<p id="messages-info" class="result-info"><a href="/users/inbox"><?=lang('go-to-inbox')?> &raquo;</a></p>
 			</div>
 			<?php endif;?>
-		</li>
-		<li>
-			<a href="javascript:void(0)" class="button" title="25 comments"><img src="/assets/images/icons/fugue/balloon.png" width="16" height="16"> <strong>25</strong></a>
-			<div id="comments-list" class="result-block">
-				<span class="arrow"><span></span></span>
-				
-				<ul class="small-files-list icon-comment">
-					<li>
-						<a href="javascript:void(0)"><strong>Jane</strong>: I don't think so<br>
-						<small>On <strong>Post title</strong></small></a>
-					</li>
-				</ul>
-				
-				<p id="comments-info" class="result-info"><a href="javascript:void(0)">Manage comments &raquo;</a></p>
-			</div>
 		</li>
 		<li><a href="/users/logout/" class="button red" title="<?=lang('logout')?>"><span class="smaller"><?=lang('logout')?></span></a></li>
 	</ul>

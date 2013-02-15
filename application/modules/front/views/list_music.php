@@ -28,8 +28,8 @@
 						<span class="toggle"></span>
 						<a href="javascript:void(0);" class="folder"><span>Dj Olbrich</span></a>
 						<ul>
-							<?php foreach($videos['olbrich'] as $v): ?>
-							<li><a href="javascript:void(0);" class="document-music"><span><?=$v?></span></a></li>
+							<?php foreach($videos['olbrich'] as $v): $v = $v.".mp4";?>
+							<li><a href="<?=($this->tank_auth->is_pro()) ? "/video/download/".url_base64_encode($v): "javascript:void(0);"?>" class="document-music"><span><?=$v?></span></a></li>
 							<?php endforeach; ?>
 						</ul>
 					</li>

@@ -5,10 +5,12 @@ class users extends MasterController {
 	private $data = array();
 	private $username;
 	private $password;
+	private $id_user;
 
 	function __construct()
 	{
 		parent::__construct();
+		$this->id_user = $this->tank_auth->get_user_id();
 	}
 	
 	function index()
@@ -215,13 +217,22 @@ class users extends MasterController {
 	{
 		($this->tank_auth->is_logged_in()?true:redirect('/users/'));
 
+		$this->data['profile'] = $this->tank_auth->get_userinfo();
 		$this->template->set_template('default');
 		
 		$this->template->add_css('assets/css/block-lists.css');
 		$this->template->add_css('assets/css/simple-lists.css');
 		$this->template->write_view('menu', 'generales/menu_view', $this->data);
 		$this->template->write_view('footer', 'generales/footer_view', $this->data);
-		$this->template->write_view('content', 'auth/change_email_form', $this->data);
+		$this->template->write_view('content', 'auth/profile_form', $this->data);
+		$this->template->render();
+	}
+
+	function inbox()
+	{
+		$this->template->add_css('assets/css/table.css');
+		$this->data['post'] = $this->conf_model->get_messages($this->id_user, 0);
+		$this->template->write_view('content', 'inbox_view', $this->data);
 		$this->template->render();
 	}
 

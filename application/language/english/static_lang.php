@@ -19,10 +19,18 @@ $lang['re-send-email'] = 'Re-enviar correo';
 // Front view
 
 $lang['home'] = 'inicio';
+$lang['my'] = 'Mi';
 $lang['dashboard'] = 'Panel';
 $lang['my-profile'] = 'Mi perfil';
+$lang['my-inbox'] = 'Buz&oacute;n';
 $lang['my-settings'] = 'Mi configuraci&oacute;n';
 $lang['welcome'] = 'Bienvenido';
 $lang['messages'] = 'mensaje(s)';
 $lang['go-to-inbox'] = 'Ir a Bandeja';
 $lang['logout'] = 'Salir del sistema';
+
+
+// Backend
+
+$lang['title'] = 'T&iacute;tulo';
+$lang['actions'] = 'Acciones';

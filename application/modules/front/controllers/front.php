@@ -20,6 +20,7 @@ class front extends MasterController {
 	
 	function music_list()
 	{
+		$this->load->library('encrypt');
 		$music['videos'] = $this->_load_music();
 
 		$this->template->add_js("assets/js/list.js");
@@ -41,6 +42,35 @@ class front extends MasterController {
 		$list['olbrich'] = explode('.mp4', $last_line3);
 		$list['andres'] = explode('.mp4', $last_line4);
 		return $list;	
+	}
+	
+	function blog()
+	{
+		$string = ($this->uri->segment(3))? $this->uri->segment(3): 'faqs';
+		$this->data['post'] = $this->conf_model->get_post($string);
+		$this->template->write_view('content', 'blog_view', $this->data);
+		$this->template->render();
+	}
+	
+	function download()
+	{	
+		($this->tank_auth->is_pro()?true:redirect());
+	
+		//$this->load->helper('system');
+		$this->encrypt->set_cipher(MCRYPT_BLOWFISH);		
+		$code = $this->uri->segment(3);
+		$file = url_base64_decode($code);
+		
+//		if(
+//		get_file('/home/vremixes/uploads/olbrich001/'.trim($file).'.mp4');
+		$filename = '/home/vremixes/uploads/olbrich001/'.trim($file);
+		$f = file_get_contents($filename);
+		$this->load->helper('download');
+		force_download($file, $f);
+		//)
+//		{
+//			$this->tank_auth->count_download($file);
+//		}
 	}
 
 }

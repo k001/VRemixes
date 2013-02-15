@@ -215,6 +215,41 @@ class Tank_auth
 	{
 		return ((strlen($email) > 0) AND $this->ci->users->is_email_available($email));
 	}
+	
+	/*
+	 * Get user profile
+	 *
+	 *@return object
+	 */
+	function get_userinfo()
+	{
+		$user_id = $this->ci->session->userdata('user_id');
+		return $this->ci->users->get_profile_by_id($user_id);
+	}
+	
+	/*
+	 * Check if the user is a pro
+	 *
+	 * @return bool
+	 */
+	function is_pro()
+	{
+		$profile = $this->get_userinfo();
+		if($profile->pro == 1)
+			return true;
+		else
+			return false;
+	}
+	
+	/*
+	 * Update the field if the user download the file
+	 *
+	 * @return bool
+	 */
+	function count_download($file)
+	{
+		$this->ci->users->update_file_downloaded($file);	
+	}
 
 	/**
 	 * Change email for activation and return some data about user:
@@ -629,6 +664,8 @@ class Tank_auth
 					$this->ci->config->item('login_attempt_expire', 'tank_auth'));
 		}
 	}
+	
+	
 }
 
 /* End of file Tank_auth.php */

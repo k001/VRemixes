@@ -86,6 +86,21 @@ class Users_model extends Model
 		if ($query->num_rows() == 1) return $query->row();
 		return NULL;
 	}
+	
+	/**
+	 * Get user profile record by Id
+	 *
+	 * @param int
+	 * @return object
+	 */ 
+	function get_profile_by_id($user_id)
+	{
+		$this->db->where('user_id', $user_id);
+		$query = $this->db->get($this->profile_table_name);
+		
+		if ($query->num_rows() == 1) return $query->row();
+		return null;
+	}
 
 	/**
 	 * Check if username available for registering
